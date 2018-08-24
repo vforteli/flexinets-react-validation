@@ -2,10 +2,10 @@ var path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/PaginationControl.js',
+    entry: ['babel-polyfill', './index.js'],
     output: {
         path: path.resolve('lib'),
-        filename: 'PaginationControl.js',
+        filename: 'flexinets-react-validation.js',
         libraryTarget: 'commonjs2'
     },
     module: {
@@ -18,8 +18,7 @@ module.exports = {
         ]
     },
     externals: {
-        'react': 'commonjs react', // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
-        'reactstrap': 'reactstrap',
+        'react': 'commonjs react',
         'prop-types': 'prop-types'
     }
 }
