@@ -1,32 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ValidatedForm renders without errors 1`] = `
-<form
-  noValidate={true}
-  onSubmit={[Function]}
->
-  <div
-    className="form-group required"
+exports[`ValidatedForm renders with validation error 1`] = `
+<ValidatedForm>
+  <form
+    noValidate={true}
+    onSubmit={[Function]}
   >
-    <label
-      htmlFor="test"
-    >
-      test
-       
-    </label>
-    <input
-      className="form-control"
+    <_class
       label="test"
       name="test"
-      onBlur={[Function]}
-      onChange={[Function]}
       placeholder="test"
       required={true}
       type="text"
-    />
-    <div
-      className="invalid-feedback"
-    />
-  </div>
-</form>
+    >
+      <TextInputValidated
+        isFormTouched={false}
+        label="test"
+        name="test"
+        placeholder="test"
+        required={true}
+        type="text"
+      >
+        <div
+          className="form-group required"
+        >
+          <label
+            htmlFor="test"
+          >
+            test
+             
+          </label>
+          <input
+            className="form-control"
+            label="test"
+            name="test"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="test"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          />
+        </div>
+      </TextInputValidated>
+    </_class>
+    <button
+      id="submitbutton"
+      type="submit"
+    >
+      submit
+    </button>
+  </form>
+</ValidatedForm>
+`;
+
+exports[`ValidatedForm renders without errors 1`] = `
+<ValidatedForm>
+  <form
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <_class
+      label="test"
+      name="test"
+      placeholder="test"
+      required={true}
+      type="text"
+    >
+      <TextInputValidated
+        isFormTouched={false}
+        label="test"
+        name="test"
+        placeholder="test"
+        required={true}
+        type="text"
+      >
+        <div
+          className="form-group required"
+        >
+          <label
+            htmlFor="test"
+          >
+            test
+             
+          </label>
+          <input
+            className="form-control"
+            label="test"
+            name="test"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="test"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          />
+        </div>
+      </TextInputValidated>
+    </_class>
+  </form>
+</ValidatedForm>
 `;
