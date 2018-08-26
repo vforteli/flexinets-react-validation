@@ -20,6 +20,7 @@ class ValidatedInput extends Component {
     }
 
     handleChange = (e) => {
+        console.debug('handling change');
         this.props.onChange(e);
         this.checkValidity(e);
     }
@@ -28,20 +29,28 @@ class ValidatedInput extends Component {
     checkValidity = async (e) => this.setValidity(e.target)
 
 
+    // todo fix this...
+    // this needs to support multiple validators
     setValidity = async (target) => {
         if (!target.readOnly && this.props.customValidators) {
             this.props.customValidators.forEach(async (validator) => {
                 const customValidatorResult = await validator(target.value);
                 console.debug(customValidatorResult);
                 target.setCustomValidity(!customValidatorResult.valid ? customValidatorResult.message : '');    // todo fix...
-                this.setState({ errorMessage: !customValidatorResult.valid ? customValidatorResult.message : '' });
+                this.setState({
+                    errorMessage: !customValidatorResult.valid ? customValidatorResult.message : '',
+                    hasError: !target.validity.valid,
+                    validity: target.validity
+                });
             });
         }
-
-        this.setState({
-            hasError: !target.validity.valid,
-            validity: target.validity
-        });
+        else {
+            console.debug('Setting validation state to: ', target.validity.valid);
+            this.setState({
+                hasError: !target.validity.valid,
+                validity: target.validity
+            });
+        }
     }
 }
 

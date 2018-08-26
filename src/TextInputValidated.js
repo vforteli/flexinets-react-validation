@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import ValidatedInput from './ValidatedInput';
 import { withValidation } from './FormValidationContext';
 
