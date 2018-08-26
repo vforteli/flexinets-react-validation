@@ -20,7 +20,7 @@ class ValidatedInput extends Component {
         }
     }
 
-    handleChange = (e) => {        
+    handleChange = (e) => {
         this.props.onChange(e);
         this.checkValidity(e);
     }
@@ -42,7 +42,8 @@ class ValidatedInput extends Component {
             console.debug('Found custom errors', customErrors.length);
             target.setCustomValidity(customErrors.length > 0 ? 'errors' : ''); // not really interested in the error here but this sets the html5 validation          
         }
-        console.debug(target.validity);
+
+        // todo maybe get rid of using html5 validity        
         this.setState({
             errorMessages: customErrors,
             hasError: !target.validity.valid,
