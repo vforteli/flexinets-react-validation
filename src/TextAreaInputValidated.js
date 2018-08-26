@@ -12,7 +12,7 @@ class TextAreaInputValidated extends ValidatedInput {
                 <div className="invalid-feedback">
                     {this.state.validity.valueMissing && 'This field is required'}
                     {!this.state.validity.valueMissing && this.state.validity.typeMismatch && 'This field is invalid'}
-                    {this.state.validity.customError && this.state.errorMessage}
+                    {this.state.errorMessages.map(o => <p key={o}>{o}</p>)}
                 </div>
                 {this.props.children}
             </div>

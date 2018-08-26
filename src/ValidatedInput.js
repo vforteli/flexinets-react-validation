@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 
+// todo ditch the html5 piggy backing alltogether?
 class ValidatedInput extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +9,7 @@ class ValidatedInput extends Component {
         this.state = {
             hasError: false,
             validity: {},
-            errorMessage: ''    // todo refactor used for server side error messages... probably needs an array
+            errorMessages: []    // todo refactor used for server side error messages... 
         };
     }
 
@@ -19,8 +20,7 @@ class ValidatedInput extends Component {
         }
     }
 
-    handleChange = (e) => {
-        console.debug('handling change');
+    handleChange = (e) => {        
         this.props.onChange(e);
         this.checkValidity(e);
     }
@@ -29,28 +29,25 @@ class ValidatedInput extends Component {
     checkValidity = async (e) => this.setValidity(e.target)
 
 
-    // todo fix this...
-    // this needs to support multiple validators
     setValidity = async (target) => {
+        const customErrors = [];
         if (!target.readOnly && this.props.customValidators) {
-            this.props.customValidators.forEach(async (validator) => {
+            await Promise.all(this.props.customValidators.map(async (validator) => {
                 const customValidatorResult = await validator(target.value);
                 console.debug(customValidatorResult);
-                target.setCustomValidity(!customValidatorResult.valid ? customValidatorResult.message : '');    // todo fix...
-                this.setState({
-                    errorMessage: !customValidatorResult.valid ? customValidatorResult.message : '',
-                    hasError: !target.validity.valid,
-                    validity: target.validity
-                });
-            });
+                if (!customValidatorResult.valid) {
+                    customErrors.push(customValidatorResult.message);
+                }
+            }));
+            console.debug('Found custom errors', customErrors.length);
+            target.setCustomValidity(customErrors.length > 0 ? 'errors' : ''); // not really interested in the error here but this sets the html5 validation          
         }
-        else {
-            console.debug('Setting validation state to: ', target.validity.valid);
-            this.setState({
-                hasError: !target.validity.valid,
-                validity: target.validity
-            });
-        }
+        console.debug(target.validity);
+        this.setState({
+            errorMessages: customErrors,
+            hasError: !target.validity.valid,
+            validity: target.validity
+        });
     }
 }
 
