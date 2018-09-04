@@ -10,7 +10,7 @@ class TextInputAddonValidated extends ValidatedInput {
         return (
             <div className={this.props.required ? 'form-group required' : 'form-group'}>
                 <label htmlFor={this.props.name}>{this.props.label} {!this.props.required && <small>(Optional)</small>}</label>
-                <div className="input-group mb-3">
+                <div className="input-group">
                     <input onBlur={this.checkValidity} className={this.state.hasError ? 'form-control is-invalid' : 'form-control'} {...rest} onChange={this.handleChange} ref={this.inputRef} />
                     <div className="input-group-append">
                         <span className="input-group-text" id="basic-addon2">@{this.props.addonText}</span>
