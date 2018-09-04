@@ -40,9 +40,14 @@ exports[`ValidatedForm renders with validation error 1`] = `
             required={true}
             type="text"
           />
-          <div
-            className="invalid-feedback"
-          />
+          <ValidationInfoDetail
+            errorMessages={Array []}
+            validity={Object {}}
+          >
+            <div
+              className="invalid-feedback"
+            />
+          </ValidationInfoDetail>
         </div>
       </TextInputValidated>
     </_class>
@@ -96,9 +101,14 @@ exports[`ValidatedForm renders without errors 1`] = `
             required={true}
             type="text"
           />
-          <div
-            className="invalid-feedback"
-          />
+          <ValidationInfoDetail
+            errorMessages={Array []}
+            validity={Object {}}
+          >
+            <div
+              className="invalid-feedback"
+            />
+          </ValidationInfoDetail>
         </div>
       </TextInputValidated>
     </_class>

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import ValidatedInput from './ValidatedInput';
 import { withValidation } from './FormValidationContext';
+import ValidationFeedback from './ValidationFeedback';
 
 class TextAreaInputValidated extends ValidatedInput {
     render() {
@@ -9,11 +10,7 @@ class TextAreaInputValidated extends ValidatedInput {
             <div className={this.props.required ? 'form-group required' : 'form-group'}>
                 <label htmlFor={this.props.name}>{this.props.label} {!this.props.required && <small>(Optional)</small>}</label>
                 <textarea onBlur={this.checkValidity} className={this.state.hasError ? 'form-control is-invalid' : 'form-control'} {...rest} onChange={this.handleChange} ref={this.inputRef} />
-                <div className="invalid-feedback">
-                    {this.state.validity.valueMissing && 'This field is required'}
-                    {!this.state.validity.valueMissing && this.state.validity.typeMismatch && 'This field is invalid'}
-                    {this.state.errorMessages.map(o => <div key={o}>{o}</div>)}
-                </div>
+                <ValidationFeedback validity={this.state.validity} errorMessages={this.state.errorMessages} />   
                 {this.props.children}
             </div>
         );
