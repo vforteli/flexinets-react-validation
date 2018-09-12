@@ -3,6 +3,7 @@ var path = require('path');
 module.exports = {
     mode: 'production',
     entry: ['babel-polyfill', './index.js'],
+    devtool: 'source-map',
     output: {
         path: path.resolve('lib'),
         filename: 'flexinets-react-validation.js',
