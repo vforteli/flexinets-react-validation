@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: ['babel-polyfill', './index.js'],
+    entry: ['./index.js'],
     devtool: 'source-map',
     output: {
         path: path.resolve('lib'),
@@ -19,7 +19,7 @@ module.exports = {
         ]
     },
     externals: {
-        'react': 'commonjs react',
+        'react': 'react',
         'prop-types': 'prop-types'
     }
 }
