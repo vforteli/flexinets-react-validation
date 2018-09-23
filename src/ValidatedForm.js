@@ -2,11 +2,7 @@
 import { FormValidationContext } from './FormValidationContext';
 
 class ValidatedForm extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { touched: false };
-    }
+    state = { touched: false };
     
     handleSubmit = (event) => {
         this.setState({ touched: true });
